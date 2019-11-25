@@ -1,24 +1,7 @@
-# README
+# Rails React Crash Course
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Head to the lessons directory to see set up instructions and lesson outlines.
 
-Things you may want to cover:
+The source code for the backend and frontend are in this repo as well 
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Have fun learning! 
