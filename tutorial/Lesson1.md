@@ -1,4 +1,9 @@
-## Welcome to Lesson 1A
+## Welcome to Lesson 1
+
+### What we're going to achieve
+- Understand why Rails as backend 
+- Set up a rails backend
+- Configure models and postgresql
 
 ### Introduction
 Ruby on Rails (RoR) is a framework that runs on the Ruby language. I like Ruby as a language, as it is easy to read and also easy to pick up. RoR is good as a backend framework for these reasons:
@@ -109,132 +114,21 @@ end
 ### TODO
 Now for soome homework:
 1. [ ] Create scaffold for Comment model (comment - string, thumbs_up - integer)
-2. [ ] Add Post has many comments and comments belong to post relationship
-2. [ ] Run the migrations on the db and see that the schema reflect the new model
-3. [ ] Rmb to update model
+2. [ ] Post has many comments and comments belong to post. Add this relationship to the migration file and two the Post and Comment model files
+3. [ ] Run the migration on the db
 
+Tip: Refer to source code to verify that what you wrote is correct! 
 
-### Controller
-Now that the models are set up, let's talk about the controller. The most important file you must know:
+Tip Again: You should not edit the migration file after you have migrated. You should run `rails db:rollback` to undo the db changes, then edit the file and run the migration again. 
 
-> `config/routes.rb`
-
-This exposes the routes that are available when the server is running.
-
-Open the file and you will see some resources are being defined. Open up the files under `app/controllers/` and OMG did the code write itself?
-
-![OMG](https://media.giphy.com/media/ZdCJ4G17h7lIsrYfLs/giphy.gif)
-
-Yes, it was part of the scaffold. Our job is done!
-
-Let's run a server:
-```
-rails s
-```
-
-Navigate to your browser, and open up `localhost:3000`. Navigate to `localhost:3000/authors`. You should see `[]`
-
-YAY congrats. You have just learnt RoR lol. 
-
-![Done](https://media.giphy.com/media/8UF0EXzsc0Ckg/giphy.gif)
-
-Ok now to explain - when you navigate to the route `/authors`, what you actually did was to call the index method in the authors controller. How do I know this? I look at `routes.rb`.
-
-`resources :authors` is actually short-form (or ruby sugar for):
-```
-get '/authors', to: 'authors#index', as: 'authors'
-get '/authors/:id', to: 'authors#show', as: 'author'
-post '/authors', to: 'authors#create', as: 'authors_new'
-put '/authors/:id', to: 'authors#update', as: 'authors_update'
-delete '/authors/:id', to: 'authors#destroy', as: 'authors_delete'
-```
-
-So the empty array is actually the result of displaying all the authors in the database. That is what the index method is saying. Return all authors. See the syntax of ActiveRecord? 
-`Author.all` vs `SELECT * from authors;`
-
-Ok let's add an author. Let's do it via the console.
-
-### Using Rails Console
-
-What we're going to do is use the ORM syntax to create a record in the authors table.
-
-```ruby
-Author.create(name: "01", 
-  favourite_coffee: "Kopi Siew Dai")
-```
-
-Run the server at the `/authors` endpoint. What do you see???
-
-### Seeding the db with data
-Copy this into `db/seeds.rb`
-```ruby
-zeroone = Author.find_or_create_by(name: "01", 
-  favourite_coffee: "Kopi Siew Dai")
-kyli = Author.find_or_create_by(name: "Kyli", 
-  favourite_coffee: "Choc Coffee")
-
-post1 = Post.find_or_create_by(title: "Benefits of Coffee",
-  content: "I Love coffee", author_id: zeroone.id)
-
-post2 = Post.find_or_create_by(title: "You wouldn't believe # 3 about coffee",
-  content: "Coffee has its secrets", author_id: kyli.id)
-
-Comment.find_or_create_by(comment: "I'd die before going without coffee", 
-  thumbs_up: 5, post_id: post1.id)
-```
-
-Run `rails db:seed` and the 5 records will be added to your database.
-
-### Homework for the good kids
-- [ ] Add a new endpoint to return all the posts belonging to one author
-
-Tip: Peek at the source code in this repo to see the answer! 
 ### Conclusion
 
 From lesson 1, we learnt:
 1. MVC framework
-2. How to create models, controllers and migrations
-3. How routing and RESTful API calls work
+2. How to create models
+3. How to create and update tables in Postgresql database through migration files
 
-Lesson two - we'll dive into frontend!
-
-
-### A little more about ActiveRecord
-The ruby syntax makes it easy to build queries.
-
-| Rails | SQL | Command |
-| - | - | - |
-| Model.all | SELECT * FROM model; | Get all records |
-| Model.find(:id) | SELECT * FROM model WHERE model.id = id; | Get record of id |
-| Model.pluck(:name) | SELECT name FROM model; | Get all names from model table | 
-| Model.find(:id).association | SELECT * FROM model INNER JOIN association_table ON model.col_name = association_table.col_name; | Getting assocations of a record |
-| Model.where(name: ...) | SELECT * FROM model WHERE name = ...; | Get records where... |
-
-
-### Rails Commands Cheatsheet
-```ruby
-# Starts a http server.
-# s is short for server
-rails s
-
-# Starts a console
-# c is short for console
-rails c
-
-# Create db if not created (run only at the start)
-rails db:create
-
-# Migrate db
-rails db:migrate
-
-# Create scaffolds
-rails g scaffold <Model> <attribute>:<type>
-
-# Create individual model/controller/etc
-rails g model <Model>
-rails g controller <Name>
-rails g migration <Name>
-```
+Lesson two - we'll dive into Rails controller!
 
 ### References
 1. [Getting Started](https://guides.rubyonrails.org/getting_started.html) 

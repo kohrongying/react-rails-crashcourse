@@ -1,4 +1,4 @@
-
+.DS_Store
 /rails-backend/.bundle
 /rails-backend/log/*
 /rails-backend/tmp/*
