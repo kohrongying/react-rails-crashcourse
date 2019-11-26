@@ -8,3 +8,24 @@
 !/rails-backend/storage/.keep
 /rails-backend/.byebug_history
 /rails-backend/config/master.key
+
+/react-frontend/node_modules
+/react-frontend/.pnp
+/react-frontend.pnp.js
+
+# testing
+/react-frontend/coverage
+
+# production
+/react-frontend/build
+
+# misc
+.DS_Store
+/react-frontend/.env.local
+/react-frontend/.env.development.local
+/react-frontend/.env.test.local
+/react-frontend/.env.production.local
+
+/react-frontend/npm-debug.log*
+/react-frontend/yarn-debug.log*
+/react-frontend/yarn-error.log*
