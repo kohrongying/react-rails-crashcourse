@@ -13,12 +13,13 @@ export default class App extends React.Component {
 
   // function
   makeApiCalls = () => {
-    axios.get('localhost:3000/authors')
+    axios.get('http://localhost:3000/authors')
       .then(response => {
         this.setState({ authors: response.data });
       })
   }
   render() {
+    console.log(this.state.authors)
     return (
       <div className="App">
         <h1>Hello Authors</h1>

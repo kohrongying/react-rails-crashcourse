@@ -76,7 +76,9 @@ npm install axios --save
 ```
 Tip: `--save` saves the dependency in `package.json`
 
-We have to import it before using it. 
+We have to import it before using it.
+
+Copy this into your `src/App.js`.
 
 ```jsx
 // src/App.js
@@ -102,12 +104,51 @@ export default class App extends React.Component {
   }
 
   render() {
+    console.log(this.state.authors)
     return (...)
   }
 }
 ```
 
+Run your rails server before running the React development server. (Hope you remember how to run a rails server... D<)
+
+Run `npm start` and open the localhost port at which React is running. (Since both rails and react uses port 3000, React will compromise and take 3001 - for example)
+
+Open the Developers Tool in your browser (Cmd-Opt-I for Mac) and in the console you should see the result of your api call.
+
+What the code essentially did, was to run the `makeApiCall()` function when the App component has mounted, then set the state of authors to the data of the GET response.
+
+#### Uh oh, we ran into a CORS error
+This means that our server's access control is not set properly.
+
+For ease, let's use a gem middleware to solve this problem efficiently.
+Add `gem 'rack-cors'` to your Gemfile, and run `bundle install`
+
+```ruby
+# config/application.rb
+
+module..
+  class..
+
+    config.m iddleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options]
+      end
+    end
+    .
+    .
+  end
+end
+
+```
+
+Run both servers now and things should work now! Yay.
+
+### Display the data
+
 
 ### References
 1. [React State and Life cycles](
 https://outline.com/LnTXGC)
+2. [CORS error](https://medium.com/@Nicholson85/handling-cors-issues-in-your-rails-api-120dfbcb8a24)
