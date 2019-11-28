@@ -1,4 +1,4 @@
-## Welcome to Lesson 2
+## Welcome to Lesson 3
 
 ### Introduction
 React JS is a popular frontend JS framework. It is declarative and component based - making it easier to rewrite code as code is modularized.
@@ -145,8 +145,11 @@ end
 
 Run both servers now and things should work now! Yay.
 
-### Display the data
+### Conclusion
+Yay we've come to the end!
 
+1. React Life cycle
+2. Making API calls
 
 ### References
 1. [React State and Life cycles](

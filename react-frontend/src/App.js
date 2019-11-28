@@ -3,7 +3,8 @@ import axios from 'axios';
 
 export default class App extends React.Component {
   state = {
-    authors: []
+    authors: [],
+    authorName: "CoffeeLover",
   }
 
   // runs before rendering
@@ -18,11 +19,27 @@ export default class App extends React.Component {
         this.setState({ authors: response.data });
       })
   }
+
+  handleChange = event => {
+    this.setState({
+      authorName: event.target.value
+    })
+  }
+
   render() {
     console.log(this.state.authors)
     return (
-      <div className="App">
-        <h1>Hello Authors</h1>
+      <div>
+        <h1>Authors List</h1>
+        <ol>
+          {this.state.authors.map(author => {
+            return <li key={author.id}>{author.name}</li>
+          })}
+        </ol>
+        <input
+          value={this.state.authorName}
+          onChange={this.handleChange}
+        />
       </div>
     );
   }
