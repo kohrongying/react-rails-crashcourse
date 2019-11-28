@@ -24,8 +24,10 @@ Follow these [instructions](https://gorails.com/setup/osx/10.14-mojave) to set u
 ### Knowledge
 This crash course assumes you have basic knowledge about how the web works - RESTful APIs, basic coding syntax and some common sense ;) 
 
+![lets begin](https://media.giphy.com/media/l1KucwCJyu4uFWHm0/giphy.gif)
+
 #### References
 1. [RESTful API](https://pusher.com/tutorials/understanding-rest-api)
 2. [Ruby on Rails Overview](https://railsapps.github.io/what-is-ruby-rails.html)
 3. [React in 5 mins](https://www.freecodecamp.org/news/learn-react-js-in-5-minutes-526472d292f4/)
-4. [Database Relationships]
+4. [Database Relationships](https://database.guide/the-3-types-of-relationships-in-database-design/)
