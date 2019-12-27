@@ -16,17 +16,21 @@ Open the file and you will see some resources are being defined. Open up the fil
 
 Yes, it was generated when we ran the scaffold in the previous lesson. Our job is done!
 
+### Rails Server
 Let's run a server:
 ```
 rails s
 ```
 
-Navigate to your browser, and open up `localhost:3000`. Navigate to `localhost:3000/authors`. You should see `[]`
+Navigate to your browser, and open up `localhost:3000`. 
+
+Navigate to `localhost:3000/authors`. You should see `[]`
 
 YAY congrats. You have just learnt RoR lol. 
 
 ![Done](https://media.giphy.com/media/8UF0EXzsc0Ckg/giphy.gif)
 
+#### What went down
 Ok now to explain - when you navigate to the route `/authors`, what you actually did was to call the index method in the authors controller. How do I know this? I look at `routes.rb`.
 
 `resources :authors` is actually short-form (or ruby sugar for):
@@ -50,7 +54,7 @@ So the empty array we see, is actually the result of displaying all the authors 
 We can add on methods to the controller. But once we add the method, we have to tell Rails the existence of this new method - through the `routes.rb` file. 
 
 #### Creating a new route
-Breaking donw the syntax of 
+Breaking down the syntax of 
 ```ruby
 get '/authors', to: 'authors#index', as: 'authors'
 ```

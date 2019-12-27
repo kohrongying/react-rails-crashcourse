@@ -4,7 +4,7 @@
 React JS is a popular frontend JS framework. It is declarative and component based - making it easier to rewrite code as code is modularized.
 
 ### Setting up create-react-app project
-Let's run this command to set up a project in React
+Let's run this command to set up a project in React (in a separate folder from the RoR backend)
 ```
 npx create-react-app coffeeblog-frontend
 ```
@@ -24,7 +24,7 @@ Let's start the dev server. Run
 npm start
 ```
 
-You should see the spinning logo at localhost:3000. 
+You should see the spinning logo at `localhost:3000`. 
 
 Open up `src/App.js` and add your name under the image tag. You should see your name appear on the dev server! 
 
@@ -97,7 +97,7 @@ export default class App extends React.Component {
 
   // function
   makeApiCalls = () => {
-    axios.get('localhost:3000/authors')
+    axios.get('http://localhost:3000/authors')
       .then(response => {
         this.setState({ authors: response.data });
       })
@@ -124,13 +124,16 @@ This means that our server's access control is not set properly.
 For ease, let's use a gem middleware to solve this problem efficiently.
 Add `gem 'rack-cors'` to your Gemfile, and run `bundle install`
 
+Add some code to the `config/application.rb` file:
+
 ```ruby
 # config/application.rb
 
 module..
   class..
 
-    config.m iddleware.insert_before 0, Rack::Cors do
+    # Add code under the class 
+    config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
         resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options]
@@ -143,7 +146,7 @@ end
 
 ```
 
-Run both servers now and things should work now! Yay.
+Run both servers now, and you should see the array of authors in the browser console. Things should work now! Yay.
 
 ### Conclusion
 Yay we've come to the end!

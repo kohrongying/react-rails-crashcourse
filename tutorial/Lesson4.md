@@ -3,7 +3,7 @@
 ### Introduction
 Here we're going to learn about an important concept - props. And how to write some jsx!
 
-### Display the data
+### Displaying the data
 
 A simple way to display the data is to use the ordered list html tag `<ol></ol>`
 
@@ -22,12 +22,23 @@ render() {
 }
 ```
 
+##### Parsing Error
 Uh oh, another error that says `Parsing error: Adjacent JSX elements must be wrapped in an enclosing tag`. 
 
 This just means that React was unable to parse the file as the jsx was not in an enclosing tag. It also just means, when you return, you should only return ONE child. 
 
 Easy! Let's just wrap the `<h1>` and `<ol>` in a `<div>`.
 
+```html
+<div>
+  <h1>...</h1>
+  <ol>
+    ...
+  </ol>
+</div>
+```
+
+#### Unique Key Prop
 If you open the developer's console on the browser, you'll see another red prompt that says `Each child in a list should have a unique "key" prop`.
 
 React is complaining because when we map across the authors list we are return a `<li>` component that is not unique. The solution is simple - add a `key` prop. Like this - 
@@ -89,7 +100,7 @@ render() {
 }
 ```
 
-Try it out! You should be able to see a textbox with the words "CoffeeLover" inside. However, you can type or edit the words even though its a text input. 
+Try it out! You should be able to see a textbox with the words "CoffeeLover" inside. However, you cannot type or edit the words even though its a text input. 
 
 This is because we did not specify an onChange handler (dev tools will also be complainin').
 
@@ -113,14 +124,15 @@ And add an event handler on `<input />`
 />
 ```
 
-Tada! Save and now you should be ablet o type freely. What we did was to pass the handleChange method that we defined into the input component through the `onChange` prop.
+Tada! Save and now you should be able to type freely.
 
-Let's look at the `onChange` function: 
+ What we did was to pass the `handleChange` method that we defined into the input component through the `onChange` prop.
+
+Let's look at the `handleChange` function:
+
 It takes an event parameter and we're updating the state of our `authorName` state using `event.target.value`.
 
 When we type in the input, an event is triggered/fired and each key down is an event. The result of what we type can be retrieved from `event.target.value`.
-
-![mutate state](https://www.freecodecamp.org/news/content/images/2019/10/o60oxupyz8cfce0cknvz.png)
 
 Another point to note is also: 
 ```jsx
@@ -132,6 +144,8 @@ this.setState({
 ✕✕✕
 this.state.authorName = "newValue"
 ```
+![mutate state](https://www.freecodecamp.org/news/content/images/2019/10/o60oxupyz8cfce0cknvz.png)
+
 
 The only way to safely update state (or mutate) is to use `setState`. Calling `setState` will always trigger a re-render. Directly mutating it will not guarantee the correct value is updated.
 

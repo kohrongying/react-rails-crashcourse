@@ -62,9 +62,12 @@ rails g scaffold Author name:string favourite_coffee:string
 
 Tip: g stands for generate. Ya programmers lazy ¯\\_ (ツ)_/¯
 
-#### Ok what just happened?
-Essentially, running one line generated my model, migration and controller!
+
 ![AMAHZING](https://media.giphy.com/media/3o7btYRcGPDrQ0YTy8/giphy.gif)
+
+#### Ok what just happened?
+Essentially, running one line generated my model, migration and controller. Here are the details of what exactly went down:
+
 1. Invoked Active Record (Model)
  - Created a migration file `db/migrate/.....`
  - Created a Model file `app/models/author.rb`
@@ -85,20 +88,27 @@ rails db:create
 # migrate
 rails db:migrate
 ```
-A migration reads migration files in `db/migrate` and carries out the action on the actual database . You realise the `db/schema.rb` file is created. Timestamps are auto created. This schema is important as it represents a snapshot of the table attributes and relationships between different tables in your database. Hence, the changes you make (new tables, new columns etc) that is written in the migration files won't be executed/applied on your db until you run the migration command.
+A migration reads migration files in `db/migrate` and carries out the action on the actual database.
+
+You realise the `db/schema.rb` file is created. Timestamps are auto created. 
+
+This schema is important as it represents a snapshot of the table attributes and relationships between different tables in your database. 
+
+Hence, the changes you make (new tables, new columns etc) that is written in the migration files won't be executed/applied on your db until you run the migration command.
 
 #### Specifying Relationships
 **TODO**: Create a scaffold for the Post model with a title and content attribute.
 
 We know that each post belongs to one unique author while an author can have many posts. Let's formalize this in code.
 
-Before we migrate and create the new post model, add this line to `db/migrate/...create_posts.rb` (before t.timestamps)
+##### Migrate the Post model
+Add this line to `db/migrate/...create_posts.rb` (before t.timestamps)
 ```
 t.belongs_to :author, index: true, foreign_key: true
 ```
 This tells postgres to create the foreign key column in the posts table. 
 
-Thereafter, we also need to update the models to reflect this change.
+##### Update the author and post models 
 ```ruby
 # app/models/author.rb
 class Author < ApplicationRecord
@@ -112,7 +122,7 @@ end
 ```
 
 ### TODO
-Now for soome homework:
+Now for some homework:
 1. [ ] Create scaffold for Comment model (comment - string, thumbs_up - integer)
 2. [ ] Post has many comments and comments belong to post. Add this relationship to the migration file and two the Post and Comment model files
 3. [ ] Run the migration on the db
