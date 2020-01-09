@@ -61,7 +61,7 @@ export default class App extends React.Component {
     return (
       <div>
         <h1>Hello World</h1>
-        <p>Counter value is {this.state.counter}
+        <p>Counter value is {this.state.counter}</p>
         // reference state variables using this.state
       </div>
     )
