@@ -39,7 +39,7 @@ A react lifecycle represents the process and timeline for each component, from i
 For the point of the tutorial, let's just simplify to knowing that we will make our API calls in the `componentDidMount()` lifecycle stage/method. This means that the API calls will be made before the rendering occurs. See sample code below:
 
 ```jsx
-export default class App extends React.Component => {
+export default class App extends React.Component {
   // define initial value of state
   state = {
     counter: 0
